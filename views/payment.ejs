@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style/style2.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center mt-5 mb-5">
+        <div class="row justify-content-center">
+            <% if(typeof(message)!='undefined' ){%>
+                <% if(message.type==0){%>
+                    <div class="alert alert-danger" role="alert">
+                        <%=message.message%>
+                    </div>
+                    <%}else{%>
+                        <div class="alert alert-success" role="alert">
+                            <%=message.message%>
+                        </div>
+                        <%}%>
+                            <%}%>
+
+
+                            <div class="d-flex justify-content-end">
+                                    <img src="/img/UserImage.png" class="dropdown-toggle" href="#" role="" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color:black">
+                            </img>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <li><a class="dropdown-item" href="/history-transaction">Lịch sử giao dịch</a></li>
+                                  <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
+                                </ul>
+                              </div>
+
+
+                                <form action="/payment" method="post">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <span>THANH TOÁN HỌC PHÍ</span>
+                                            <div class="card">
+                                                <div class="accordion" id="accordionExample">
+                                                    <div class="card">
+                                                        <div id="collapseOne" class="collapse show"
+                                                            aria-labelledby="headingOne"
+                                                            data-parent="#accordionExample">
+                                                            <div class="card-body payment-card-body">
+                                                                <span class="font-weight-normal card-text">Người nộp
+                                                                    tiền</span>
+                                                                <div class="input">
+                                                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="<%=user.fullName%>" disabled>
+                                                                </div>
+
+                                                                <span class="font-weight-normal card-text">Số điện
+                                                                    thoại</span>
+                                                                <div class="input">
+                                                                    <i class="fa-solid fa-phone"></i>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="<%=user.phone%>" disabled>
+                                                                </div>
+
+                                                                <span class="font-weight-normal card-text">Email</span>
+                                                                <div class="input">
+                                                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="<%=user.email%>" disabled>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <span>THÔNG TIN HỌC PHÍ</span>
+                                            <div class="card">
+
+                                                <div class="accordion" id="tuition-infor">
+                                                    <div class="card">
+                                                        <div id="collapseOne" class="collapse show"
+                                                            aria-labelledby="headingOne"
+                                                            data-parent="#accordionExample">
+                                                            <div class="card-body payment-card-body">
+                                                                <span class="font-weight-normal card-text">Mã số sinh
+                                                                    viên</span>
+                                                                <div class="input">
+                                                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                                                    <input type="text" name="studentID"
+                                                                        class="form-control"
+                                                                        placeholder="Mã số sinh viên"
+                                                                        onchange="getTuitionInfor(this.value)"
+                                                                        id="studentID">
+                                                                    <p class="font-weight-normal card-text" id="message"
+                                                                        style="color:rgb(209, 69, 69);display: none;">*
+                                                                    </p>
+                                                                </div>
+                                                                <span class="font-weight-normal card-text">Tên sinh
+                                                                    viên</span>
+                                                                <div class="input">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="" id="student-name" disabled>
+                                                                </div>
+                                                                <span class="font-weight-normal card-text">Học
+                                                                    phí</span>
+                                                                <div class="input">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="" id="tuition-amount" disabled>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <span>THÔNG TIN CHI TIẾT</span>
+
+
+                                            <div class="card">
+                                                <hr class="mt-0 line">
+                                                <div class="p-3">
+                                                    <div class="d-flex justify-content-between mb-2">
+                                                        <span>Số dư khả dụng</span>
+                                                        <span id="balance">
+                                                            <%=user.balance%>
+                                                        </span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>Số tiền cần phải thanh toán</span>
+                                                        <span id="confirm-amount">0</span>
+                                                    </div>
+                                                    <hr class="mt-0 line">
+                                                    <div class="p-3 d-flex justify-content-between">
+                                                        <div class="d-flex flex-column">
+                                                            <span>Số dư còn lại</span>
+                                                        </div>
+                                                        <span id="total">
+                                                            <%=user.balance%>
+                                                        </span>
+                                                    </div>
+                                                    <div class="p-3 d-flex justify-content-between">
+                                                        <div class="d-flex flex-column">
+                                                        </div>
+                                                        <p class="font-weight-normal card-text" id="alert"
+                                                            style="color:rgb(209, 69, 69);display:none;">*SỐ DƯ KHÔNG ĐỦ
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="col-md-12 text-end">
+                                                        <button class="btn btn-primary" id="btn-confirm" type="submit"
+                                                            disabled>Xác
+                                                            nhận</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+        </div>
+</body>
+<script src="/scripts/main.js"></script>
+
+</html>

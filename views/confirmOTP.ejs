@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"></script>
+    <link rel="stylesheet" href="/style/confirm_style.css">
+</head>
+
+<body>
+    <div class="row justify-content-center">
+        <% if(typeof(message)!='undefined' ){%>
+            <div class="alert alert-danger" role="alert">
+                <%=message.message%>
+            </div>
+            <%}%>
+
+        <form action="confirm-otp" method="POST">
+
+        <div class="container height-100 d-flex justify-content-center align-items-center">
+            <div class="position-relative">
+                <div class="card p-2 text-center">
+                    <h6>VUI LÒNG NHẬP MÃ OTP ĐỂ<br> XÁC NHẬN THANH TOÁN</h6>
+                    <div class="p-2"> <span>Mã OTP đã được gửi tới </span> <small>
+                            <%=user.email%>
+                        </small> 
+                        <div class="input p-2">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <input type="text" name="otp" class="form-control" placeholder="Nhập mã OTP">
+                            <p class="font-weight-normal card-text" id="message"
+                                style="color:rgb(209, 69, 69);display: none;">*</p>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" id="btn-confirm" type="submit" >Xác
+                                nhận</button>
+                        </div>
+                    </div>
+                    <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    </div>
+
+
+
+</body>
+<!-- <script src="/scripts/confirm.js"></script> -->
+
+</html>
